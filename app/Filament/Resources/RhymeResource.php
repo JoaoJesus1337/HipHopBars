@@ -6,12 +6,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RhymeResource\Pages;
 use App\Models\Rhyme;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Schemas\Components\TextInput;
-use Filament\Schemas\Components\Select;
-use Filament\Schemas\Components\Textarea;
 use Filament\Schemas\Schema;
 
 final class RhymeResource extends Resource

@@ -11,7 +11,7 @@ final class Artist extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'image'];
 
     public function albums()
     {
@@ -28,7 +28,7 @@ final class Artist extends Model
         return [
             'id' => 'integer',
             'name' => 'string',
-            'slug' => 'string',
+            'image' => 'string',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

@@ -9,4 +9,4 @@ use App\Http\Controllers\Public\ArtistController;
 Route::get('/', fn (): View => view('welcome'));
 
 Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
-Route::get('/artists/{artist:slug}', [ArtistController::class, 'show'])->name('artists.show');
+Route::get('/artists/{artist}', [ArtistController::class, 'show'])->name('artists.show');

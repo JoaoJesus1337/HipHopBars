@@ -6,11 +6,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlbumResource\Pages;
 use App\Models\Album;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Schemas\Components\TextInput;
-use Filament\Schemas\Components\Select;
 use Filament\Schemas\Schema;
 
 final class AlbumResource extends Resource

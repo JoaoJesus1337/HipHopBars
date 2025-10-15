@@ -10,4 +10,5 @@ use Filament\Resources\Pages\ListRecords;
 final class ListArtists extends ListRecords
 {
     protected static string $resource = ArtistResource::class;
+
 }

@@ -16,7 +16,7 @@ class ArtistFactory extends Factory
 
         return [
             'name' => $name,
-            'slug' => Str::slug($name),
+            'image' => null,
         ];
     }
 }
