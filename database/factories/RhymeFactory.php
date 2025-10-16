@@ -16,9 +16,7 @@ class RhymeFactory extends Factory
         return [
             'artist_id' => Artist::factory(),
             'album_id' => Album::factory(),
-            'title' => $this->faker->sentence(4),
             'lyrics' => $this->faker->paragraph(),
-            'rank' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

@@ -19,7 +19,7 @@ final class ArtistController extends Controller
 
     public function show(Artist $artist)
     {
-        $rhymes = $artist->rhymes()->with('album')->orderByDesc('rank')->take(10)->get();
+        $rhymes = $artist->rhymes()->with('album')->take(10)->get();
 
         return view('artists.show', compact('artist', 'rhymes'));
     }

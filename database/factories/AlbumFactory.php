@@ -15,6 +15,7 @@ class AlbumFactory extends Factory
         return [
             'title' => $this->faker->sentence(3),
             'artist_id' => Artist::factory(),
+            'image' => null,
         ];
     }
 }

@@ -6,12 +6,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlbumResource\Pages;
 use App\Models\Album;
+use Filament\Actions\CreateAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\ImageColumn;
 
 final class AlbumResource extends Resource
 {
@@ -23,7 +26,16 @@ final class AlbumResource extends Resource
     {
         return $schema->schema([
             TextInput::make('title')->required(),
-            Select::make('artist_id')->relationship('artist', 'name')->required(),
+            FileUpload::make('image')
+                ->image()
+                ->disk('public')
+                ->directory('Albums')
+                ->maxSize(2048),
+            Select::make('artist_id')
+            ->relationship('artist', 'name')
+            ->searchable()
+            ->preload()
+            ->required(),
         ]);
     }
 
@@ -32,7 +44,11 @@ final class AlbumResource extends Resource
         return $table->columns([
             TextColumn::make('id'),
             TextColumn::make('title')->searchable(),
+            ImageColumn::make('image')->label('Image'),
             TextColumn::make('artist.name')->label('Artist'),
+        ])
+        ->toolbarActions([
+            CreateAction::make(),
         ]);
     }
 

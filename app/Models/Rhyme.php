@@ -6,19 +6,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class Rhyme extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['artist_id', 'album_id', 'title', 'lyrics', 'rank'];
+    protected $fillable = ['artist_id', 'album_id', 'lyrics'];
 
-    public function artist()
+    public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
     }
 
-    public function album()
+    public function album(): BelongsTo
     {
         return $this->belongsTo(Album::class);
     }
@@ -29,9 +30,7 @@ final class Rhyme extends Model
             'id' => 'integer',
             'artist_id' => 'integer',
             'album_id' => 'integer',
-            'title' => 'string',
             'lyrics' => 'string',
-            'rank' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
