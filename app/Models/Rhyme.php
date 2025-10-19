@@ -12,16 +12,16 @@ final class Rhyme extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['artist_id', 'album_id', 'lyrics'];
+    protected $fillable = ['artist_id', 'track_id', 'lyrics'];
 
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
     }
 
-    public function album(): BelongsTo
+    public function track(): BelongsTo
     {
-        return $this->belongsTo(Album::class);
+        return $this->belongsTo(Track::class);
     }
 
     public function casts(): array
@@ -29,7 +29,7 @@ final class Rhyme extends Model
         return [
             'id' => 'integer',
             'artist_id' => 'integer',
-            'album_id' => 'integer',
+            'track_id' => 'integer',
             'lyrics' => 'string',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',

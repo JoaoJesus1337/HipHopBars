@@ -27,19 +27,21 @@ final class RhymeResource extends Resource
     {
         return $schema->schema([
             Select::make('artist_id')->relationship('artist', 'name')->required()->reactive(),
-            Select::make('album_id')
-                ->label('Album')
-                ->options(function (Get $get): array {
+            Select::make('track_id')
+                ->label('Track')
+                ->options(function ($get): array {
                     $artistId = $get('artist_id');
 
                     if (! $artistId) {
                         return [];
                     }
 
-                    return Album::query()
-                        ->where('artist_id', $artistId)
-                        ->orderBy('title')
-                        ->pluck('title', 'id')
+                    return \App\Models\Track::query()
+                        ->whereHas('album', function ($q) use ($artistId) {
+                            $q->where('artist_id', $artistId);
+                        })
+                        ->orderBy('name')
+                        ->pluck('name', 'id')
                         ->toArray();
                 })
                 ->disabled(fn ($get) => ! (bool) $get('artist_id')),
@@ -52,7 +54,8 @@ final class RhymeResource extends Resource
         return $table->columns([
             TextColumn::make('id'),
             TextColumn::make('artist.name')->label('Artist'),
-            TextColumn::make('album.title')->label('Album'),
+            TextColumn::make('track.name')->label('Track'),
+            TextColumn::make('track.album.title')->label('Album'),
             TextColumn::make('lyrics')->label('Lyrics'),
         ])
         ->toolbarActions([

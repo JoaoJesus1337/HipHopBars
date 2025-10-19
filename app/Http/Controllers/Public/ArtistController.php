@@ -10,16 +10,24 @@ use Illuminate\Http\Request;
 
 final class ArtistController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $artists = Artist::query()->orderBy('name')->get();
+        $query = $request->query('q');
+
+        $artistsQuery = Artist::query();
+
+        if ($query) {
+            $artistsQuery->where('name', 'like', "%{$query}%");
+        }
+
+        $artists = $artistsQuery->orderBy('name')->get();
 
         return view('artists.index', compact('artists'));
     }
 
     public function show(Artist $artist)
     {
-        $rhymes = $artist->rhymes()->with('album')->take(10)->get();
+        $rhymes = $artist->rhymes()->with(['track.album'])->take(10)->get();
 
         return view('artists.show', compact('artist', 'rhymes'));
     }

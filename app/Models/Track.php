@@ -7,15 +7,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-final class Album extends Model
+final class Track extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'artist_id', 'image'];
+    protected $fillable = ['album_id', 'name'];
 
-    public function artist()
+    public function album()
     {
-        return $this->belongsTo(Artist::class);
+        return $this->belongsTo(Album::class);
     }
 
     public function rhymes()
@@ -23,18 +23,12 @@ final class Album extends Model
         return $this->hasMany(Rhyme::class);
     }
 
-    public function tracks()
-    {
-        return $this->hasMany(Track::class);
-    }
-
     public function casts(): array
     {
         return [
             'id' => 'integer',
-            'title' => 'string',
-            'artist_id' => 'integer',
-            'image' => 'string',
+            'album_id' => 'integer',
+            'name' => 'string',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

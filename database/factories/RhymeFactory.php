@@ -15,7 +15,7 @@ class RhymeFactory extends Factory
     {
         return [
             'artist_id' => Artist::factory(),
-            'album_id' => Album::factory(),
+            'track_id' => \App\Models\Track::factory(),
             'lyrics' => $this->faker->paragraph(),
         ];
     }
